@@ -19,6 +19,7 @@ public class Coin : Item
     {
         PlayerStats.AddMoney(Value);
         PoolManager.Instance.Despawn(gameObject);
+        _takeable.Drop();
     }
 
     public void SubtractNominalValue(int value)
@@ -29,6 +30,9 @@ public class Coin : Item
         Value -= value;
 
         if (Value == 0)
+        {
+            _takeable.Drop();
             PoolManager.Instance.Despawn(gameObject);
+        }
     }
 }
